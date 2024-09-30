@@ -38,10 +38,13 @@ function getStatus(taskID) {
     newRow.innerHTML = html;
 
     const taskStatus = res.task_status;
-    if (taskStatus === 'SUCCESS' || taskStatus === 'FAILURE') return false;
-    setTimeout(function() {
-      getStatus(res.task_id);
-    }, 1000);
+    if (taskStatus === 'SUCCESS' || taskStatus === 'FAILURE') {
+      return false;
+    } else {
+      setTimeout(function() {
+        getStatus(res.task_id);
+      }, 1000);
+    }
   })
   .catch(err => console.log(err));
 }
