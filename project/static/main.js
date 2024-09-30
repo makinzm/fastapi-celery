@@ -14,8 +14,21 @@ function handleClick(type) {
   })
   .then(response => response.json())
   .then(data => {
-    getStatus(data.task_id)
+    appendLoading(data.task_id);
+    getStatus(data.task_id);
   })
+}
+
+
+function appendLoading(taskID) {
+  const html = `
+  <tr id="loading-${taskID}">
+    <td>${taskID}</td>
+    <td>Loading...</td>
+    <td>Waiting for result...</td>
+  </tr>`;
+  const newRow = document.getElementById('tasks').insertRow(0);
+  newRow.innerHTML = html;
 }
 
 function getStatus(taskID) {
