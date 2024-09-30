@@ -28,17 +28,16 @@ function getStatus(taskID) {
   .then(response => response.json())
   .then(res => {
     console.log(res)
-    const html = `
-      <tr>
-        <td>${taskID}</td>
-        <td>${res.task_status}</td>
-        <td>${res.task_result}</td>
-      </tr>`;
-    const newRow = document.getElementById('tasks').insertRow(0);
-    newRow.innerHTML = html;
-
     const taskStatus = res.task_status;
     if (taskStatus === 'SUCCESS' || taskStatus === 'FAILURE') {
+       const html = `
+        <tr>
+          <td>${taskID}</td>
+          <td>${res.task_status}</td>
+          <td>${res.task_result}</td>
+        </tr>`;
+      const newRow = document.getElementById('tasks').insertRow(0);
+      newRow.innerHTML = html;
       return false;
     } else {
       setTimeout(function() {
